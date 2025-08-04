@@ -1,5 +1,6 @@
 import { AppSidebar } from "@/components/app-sidebar";
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { Navbar } from "@/components/navbar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 export default function MainLayout({
   children,
@@ -10,9 +11,10 @@ export default function MainLayout({
     <SidebarProvider>
       <div className="min-h-screen flex">
         <AppSidebar />
-        <main className="flex-1 p-4 overflow-auto">
-          {children}
-        </main>
+        <SidebarInset>
+          <Navbar />
+          <main className="flex-1 p-4 overflow-auto">{children}</main>
+        </SidebarInset>
       </div>
     </SidebarProvider>
   );
