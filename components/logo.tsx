@@ -1,16 +1,15 @@
 import Image from "next/image";
 interface LogoProps {
-  width: number;
-  height: number;
+  size: number;
 }
-export function Logo({ width, height }: LogoProps) {
+export function Logo({ size }: LogoProps) {
   return (
     <div className="flex items-center gap-2">
       <Image
         src="/images/sinergi.png"
         alt="Company Logo"
-        width={width}
-        height={height}
+        width={size}
+        height={size}
         className="object-contain"
       />
       <span className="text-2xl font-bold tracking-wide text-white">RBB</span>

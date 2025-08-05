@@ -26,7 +26,7 @@ export function NavUser({ username, departName, level }: User) {
                   "flex items-center justify-between rounded-md px-3 py-2 transition-colors duration-200",
                   "bg-[var(--sidebar-background)] text-[var(--sidebar-foreground)]",
                   "data-[state=open]:bg-[var(--sidebar-accent)] data-[state=open]:text-[var(--sidebar-accent-foreground)]",
-                  "hover:bg-transparent focus-visible:ring-0"
+                  "focus-visible:ring-0"
                 )}
               >
                 <div className="grid flex-1 text-left text-sm leading-tight">

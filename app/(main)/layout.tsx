@@ -9,13 +9,11 @@ export default function MainLayout({
 }) {
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex">
-        <AppSidebar />
-        <SidebarInset>
-          <Navbar />
-          <main className="flex-1 p-4 overflow-auto">{children}</main>
-        </SidebarInset>
-      </div>
+      <AppSidebar />
+      <SidebarInset>
+        <Navbar />
+        <main className="p-6 overflow-auto">{children}</main>
+      </SidebarInset>
     </SidebarProvider>
   );
 }

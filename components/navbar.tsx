@@ -1,16 +1,24 @@
 import { NavUser } from "./nav-user";
+import { Separator } from "./ui/separator";
 import { SidebarTrigger } from "./ui/sidebar";
 
 export function Navbar() {
   return (
-    <header className="sticky z-10 bg-background/95 supports-[backdrop-filter]:bg-background/60 backdrop-blur top-0 flex shrink-0 items-center gap-2 border-b h-12 px-3">
-      <SidebarTrigger />
-      <div className="ml-auto">
-        <NavUser
-          username="admin"
-          departName="IT Department"
-          level="SuperAdmin"
+    <header className="flex h-(--header-height) shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
+      <div className="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6">
+        <SidebarTrigger className="-ml-1" />
+        <Separator
+          orientation="vertical"
+          className="mx-2 data-[orientation=vertical]:h-4"
         />
+        {/* suatu saat bisa ditambahkan judul halaman berdasarkan route */}
+        <div className="ml-auto flex items-center gap-2">
+          <NavUser
+            username="admin"
+            departName="IT Department"
+            level="SuperAdmin"
+          />
+        </div>
       </div>
     </header>
   );
