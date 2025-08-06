@@ -18,9 +18,13 @@ async function getData(): Promise<Payment[]> {
 export default async function ReportsPage() {
   const data = await getData();
   return (
-    <Card className="mx-auto py-2">
+    <Card className="mx-auto py-6">
       <CardContent>
-        <DataTable columns={columns} data={data} searchColumn="email" />
+        <Card className="py-3">
+          <CardContent>
+            <DataTable columns={columns} data={data} searchColumn="email" />
+          </CardContent>
+        </Card>
       </CardContent>
     </Card>
   );

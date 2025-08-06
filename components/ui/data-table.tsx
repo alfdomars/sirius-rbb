@@ -19,17 +19,24 @@ import {
 import { DataTablePagination } from "@/components/ui/data-table-pagination";
 import { Input } from "@/components/ui/input";
 import { DataTableViewOptions } from "@/components/ui/data-table-view-options";
+import { Button } from "./button";
+import { PlusIcon } from "lucide-react";
+import Link from "next/link";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   searchColumn?: string;
+  showViewOptions?: boolean;
+  showAddButton?: boolean;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   searchColumn = "email",
+  showViewOptions = true,
+  showAddButton = true,
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
@@ -53,11 +60,19 @@ export function DataTable<TData, TValue>({
             className="w-full"
           />
         </div>
-        <DataTableViewOptions table={table} />
+        {showViewOptions && <DataTableViewOptions table={table} />}
+        {showAddButton && (
+          <Link href="/reports/create">
+            <Button variant="outline" size="sm">
+              <PlusIcon />
+              <span className="hidden lg:inline">Add</span>
+            </Button>
+          </Link>
+        )}
       </div>
       <div className="overflow-hidden rounded-md border">
         <Table>
-          <TableHeader>
+          <TableHeader className="bg-muted sticky top-0 z-10">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
