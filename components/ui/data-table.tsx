@@ -7,7 +7,6 @@ import {
   getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-
 import {
   Table,
   TableBody,
@@ -16,10 +15,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { DataTablePagination } from "@/components/ui/data-table-pagination";
 import { Input } from "@/components/ui/input";
-import { DataTableViewOptions } from "@/components/ui/data-table-view-options";
 import { Button } from "@/components/ui/button";
+import { DataTablePagination } from "@/components/ui/data-table-pagination";
+import { DataTableViewOptions } from "@/components/ui/data-table-view-options";
 import { PlusIcon } from "lucide-react";
 import Link from "next/link";
 
@@ -47,6 +46,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="space-y-4">
+      {/* Filter + View Options + Add */}
       <div className="flex items-center justify-between gap-4 py-4">
         <div className="flex-1 max-w-md">
           <Input
@@ -63,7 +63,7 @@ export function DataTable<TData, TValue>({
         {showViewOptions && <DataTableViewOptions table={table} />}
         {showAddButton && (
           <Link href="/reports/create">
-            <Button variant="outline" size="sm" asChild>
+            <Button variant="outline" size="sm">
               <span className="flex items-center gap-1">
                 <PlusIcon className="w-4 h-4" />
                 <span className="hidden lg:inline">Add</span>
@@ -72,23 +72,27 @@ export function DataTable<TData, TValue>({
           </Link>
         )}
       </div>
+
+      {/* Table */}
       <div className="overflow-hidden rounded-md border">
         <Table>
           <TableHeader className="bg-muted sticky top-0 z-10">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <TableHead key={header.id}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                    </TableHead>
-                  );
-                })}
+                {headerGroup.headers.map((header) => (
+                  <TableHead
+                    key={header.id}
+                    colSpan={header.colSpan} // penting untuk group
+                    className="border border-border text-center"
+                  >
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </TableHead>
+                ))}
               </TableRow>
             ))}
           </TableHeader>
@@ -122,6 +126,8 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
+
+      {/* Pagination */}
       <DataTablePagination table={table} />
     </div>
   );
