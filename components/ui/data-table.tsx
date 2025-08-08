@@ -19,7 +19,7 @@ import {
 import { DataTablePagination } from "@/components/ui/data-table-pagination";
 import { Input } from "@/components/ui/input";
 import { DataTableViewOptions } from "@/components/ui/data-table-view-options";
-import { Button } from "./button";
+import { Button } from "@/components/ui/button";
 import { PlusIcon } from "lucide-react";
 import Link from "next/link";
 
@@ -63,9 +63,11 @@ export function DataTable<TData, TValue>({
         {showViewOptions && <DataTableViewOptions table={table} />}
         {showAddButton && (
           <Link href="/reports/create">
-            <Button variant="outline" size="sm">
-              <PlusIcon />
-              <span className="hidden lg:inline">Add</span>
+            <Button variant="outline" size="sm" asChild>
+              <span className="flex items-center gap-1">
+                <PlusIcon className="w-4 h-4" />
+                <span className="hidden lg:inline">Add</span>
+              </span>
             </Button>
           </Link>
         )}

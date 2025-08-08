@@ -14,18 +14,20 @@ interface CollapsibleCardProps {
   title: string;
   children: React.ReactNode;
   defaultOpen?: boolean;
+  className?: string;
 }
 
 export function CollapsibleCard({
   title,
   children,
   defaultOpen = true,
+  className = "",
 }: CollapsibleCardProps) {
   const [isOpen, setIsOpen] = React.useState(defaultOpen);
 
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-      <Card className="py-3">
+      <Card className={`py-3 ${className}`}>
         <CardHeader className="flex flex-row items-center justify-between px-4">
           <CardTitle className="text-base font-medium">{title}</CardTitle>
           <CollapsibleTrigger asChild>

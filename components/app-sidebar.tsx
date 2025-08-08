@@ -3,8 +3,8 @@ import {
   SidebarContent,
   SidebarHeader,
 } from "@/components/ui/sidebar";
-import { NavMain } from "./nav-main";
-import { Logo } from "./logo";
+import { NavMain } from "@/components/nav-main";
+import { Logo } from "@/components/logo";
 
 const data = {
   navMain: [
